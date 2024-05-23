@@ -84,4 +84,4 @@ if st.button('Predict Price'):
     X = X.astype(float)
 
     price = np.exp(rf_model.predict(X))
-    st.subheader(f"The estimated salary is ${price[0]:.2f}")
+    st.subheader(f"The estimated price is ${price[0]:.2f}")
