@@ -2,6 +2,8 @@ import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
 import pickle
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 #df = pd.read_csv('../data/laptop_df.csv')
 df = pickle.load(open('df.pkl', 'rb'))
@@ -43,14 +45,18 @@ def show_explore_page():
     correlation = df.corr()
 
     # Create a heatmap
-    fig = go.Figure(data=go.Heatmap(
-        z=correlation.values,
-        x=correlation.columns,
-        y=correlation.columns,
-        colorscale='Viridis'))
-
-    fig.update_layout(title='Correlation')
-    st.write(fig)
+    #fig = sns.heatmap(correlation)
+    # fig = go.Figure(data=go.Heatmap(
+    #     z=correlation.values,
+    #     x=correlation.columns,
+    #     y=correlation.columns,
+    #     colorscale='Viridis'))
+    #
+    # fig.update_layout(title='Correlation')
+    fig, ax = plt.subplots()
+    sns.heatmap(correlation, annot=True, cmap='coolwarm', ax=ax)
+    plt.title(f"Correlation Heatmap of ")
+    st.pyplot(fig)
 
     st.write('<style>.row-widget.stRadio div {display: flex;flex-direction:row;}</style>', unsafe_allow_html=True)
 
