@@ -1,10 +1,11 @@
 import streamlit as st
 import plotly.graph_objects as go
 import plotly.express as px
-import pandas as pd
+import pickle
 
-df = pd.read_csv('../data/laptop_df.csv')
-df.drop(columns=['Unnamed: 0'], inplace= True)
+#df = pd.read_csv('../data/laptop_df.csv')
+df = pickle.load(open('df.pkl', 'rb'))
+ #df.drop(columns=['Unnamed: 0'], inplace= True)
 
 def show_explore_page():
     st.title("Laptop Price Explorer")
