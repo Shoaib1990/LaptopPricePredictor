@@ -42,7 +42,11 @@ def show_explore_page():
 
     # correlation
     st.subheader('Heatmap')
-    correlation = df.corr()
+
+    numeric_df = df.select_dtypes(include=['number'])
+    correlation = numeric_df.corr()
+
+
 
     # Create a heatmap
     #fig = sns.heatmap(correlation)
